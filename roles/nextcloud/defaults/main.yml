@@ -1,0 +1,5 @@
+---
+replica_count: 1
+volume_size: 1G
+nextcloud_image_version: "25.0.2"
+storage_class: default

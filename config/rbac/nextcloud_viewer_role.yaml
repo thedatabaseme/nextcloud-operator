@@ -1,0 +1,27 @@
+# permissions for end users to view nextclouds.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: nextcloud-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: nextcloud-operator
+    app.kubernetes.io/part-of: nextcloud-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: nextcloud-viewer-role
+rules:
+- apiGroups:
+  - thedatabase.me
+  resources:
+  - nextclouds
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - thedatabase.me
+  resources:
+  - nextclouds/status
+  verbs:
+  - get

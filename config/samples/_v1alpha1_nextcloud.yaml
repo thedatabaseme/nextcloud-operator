@@ -1,0 +1,12 @@
+apiVersion: thedatabase.me/v1alpha1
+kind: Nextcloud
+metadata:
+  labels:
+    app.kubernetes.io/name: nextcloud
+    app.kubernetes.io/instance: nextcloud-sample
+    app.kubernetes.io/part-of: nextcloud-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: nextcloud-operator
+  name: nextcloud-sample
+spec:
+  # TODO(user): Add fields here
