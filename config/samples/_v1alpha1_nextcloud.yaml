@@ -8,5 +8,9 @@ metadata:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/created-by: nextcloud-operator
   name: nextcloud-sample
+  namespace: nextcloud-sample
 spec:
-  # TODO(user): Add fields here
+  replica_count: 1
+  volume:
+    volume_size: 1Gi
+    storage_class: nfs-client

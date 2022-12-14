@@ -35,5 +35,5 @@
             accessModes: [ "ReadWriteOnce" ]
             resources:
               requests:
-                storage: '{{ volume_size }}'
-            storageClassName: '{{ storage_class }}'
+                storage: '{{ volume.volume_size }}'
+            storageClassName: '{{ volume.storage_class }}'

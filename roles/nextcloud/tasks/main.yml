@@ -6,3 +6,6 @@
 
 - name: StatefulSet
   include_tasks: statefulset.yml
+
+- name: Service
+  include_task: service.yml
