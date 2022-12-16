@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ ansible_operator_meta.name }}
+  namespace: {{ ansible_operator_meta.namespace }}
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: {{ replica_count }}
+  selector:
+    matchLabels:
+      app: nextcloud-{{ ansible_operator_meta.name }}
+  serviceName: nextcloud-{{ ansible_operator_meta.name }}-svc
+  template:
+    metadata:
+      labels:
+        app: nextcloud-{{ ansible_operator_meta.name }}
+    spec:
+      containers:
+      - image: nextcloud:{{ nextcloud_image_version }}
+        imagePullPolicy: IfNotPresent
+        name: nextcloud
+        ports:
+        - containerPort: 80
+          name: nextcloud-port
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: nextcloud-data
+  volumeClaimTemplates:
+    metadata:
+      name: nextcloud-data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ volume.volume_size }}
+      {% if volume.storage_class is defined %}
+      storageClassName: {{ volume.storage_class }}
+      {% endif %}

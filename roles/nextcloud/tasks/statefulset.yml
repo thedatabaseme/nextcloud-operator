@@ -2,38 +2,6 @@
 
 - name: Create Nextcloud StatefulSet {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:
-    definition:
-      kind: StatefulSet
-      apiVersion: apps/v1
-      metadata:
-        name: '{{ ansible_operator_meta.name }}'
-        namespace: '{{ ansible_operator_meta.namespace }}'
-      spec:
-        serviceName: 'nextcloud-{{ ansible_operator_meta.name }}-svc'
-        replicas: 1
-        selector:
-          matchLabels:
-            app: 'nextcloud-{{ ansible_operator_meta.name }}'
-        template:
-          metadata:
-            labels:
-              app: 'nextcloud-{{ ansible_operator_meta.name }}'
-          spec:
-            containers:
-            - name: nextcloud
-              image: 'nextcloud:{{ nextcloud_image_version }}'
-              ports:
-              - containerPort: 80
-                name: nextcloud-port
-              volumeMounts:
-              - name: nextcloud-data
-                mountPath: /var/www/html
-        volumeClaimTemplates:
-        - metadata:
-            name: nextcloud-data
-          spec:
-            accessModes: [ "ReadWriteOnce" ]
-            resources:
-              requests:
-                storage: '{{ volume.volume_size }}'
-            storageClassName: '{{ volume.storage_class }}'
+    state: present
+    template:
+      path: statefulset.j2
