@@ -36,9 +36,9 @@ jobs:
 
       - name: Build operator image
         run: |
-          make docker-build VERSION={{version}}
+          make docker-build VERSION=${{github.ref_name}}
 
       - name: Push operator image
         if: github.ref_type == 'tag'
         run: |
-          make docker-push VERSION={{version}}
+          make docker-push VERSION=${{github.ref_name}}
