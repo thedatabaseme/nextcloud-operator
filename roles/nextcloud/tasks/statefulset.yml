@@ -1,5 +1,11 @@
 ---
 
+- name: Template a file
+  ansible.builtin.template:
+    src: statefulset.j2
+    dest: templated_statefulset.yaml
+    mode: '0644'
+
 - name: Create Nextcloud StatefulSet {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:
     state: present

@@ -26,8 +26,11 @@ spec:
         volumeMounts:
         - mountPath: /var/www/html
           name: nextcloud-data
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
+    whenScaled: Delete
   volumeClaimTemplates:
-    metadata:
+  - metadata:
       name: nextcloud-data
     spec:
       accessModes:
@@ -35,6 +38,6 @@ spec:
       resources:
         requests:
           storage: {{ volume.volume_size }}
-      {% if volume.storage_class is defined %}
+{% if volume.storage_class is defined %}
       storageClassName: {{ volume.storage_class }}
-      {% endif %}
+{% endif %}

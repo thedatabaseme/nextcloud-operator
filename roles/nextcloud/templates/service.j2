@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextcloud-{{ ansible_operator_meta.name }}-svc
+  namespace: {{ ansible_operator_meta.namespace }}
+spec:
+  selector:
+    app: nextcloud-{{ ansible_operator_meta.name }}
+  ports:
+    - name: http-80
+      protocol: TCP
+      port: 80

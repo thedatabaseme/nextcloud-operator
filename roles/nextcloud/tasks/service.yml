@@ -1,0 +1,7 @@
+---
+
+- name: Create Nextcloud Service {{ ansible_operator_meta.name }}
+  kubernetes.core.k8s:
+    state: present
+    template:
+      path: service.j2
