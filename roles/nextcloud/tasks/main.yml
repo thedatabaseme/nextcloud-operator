@@ -6,6 +6,12 @@
 
 - name: StatefulSet
   include_tasks: statefulset.yml
+  when: not cleanup
 
 - name: Service
   include_tasks: service.yml
+  when: not cleanup
+
+- name: Cleanup
+  include_tasks: cleanup.yml
+  when: cleanup

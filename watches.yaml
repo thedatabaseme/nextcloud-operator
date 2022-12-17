@@ -4,4 +4,8 @@
   group: thedatabase.me
   kind: Nextcloud
   role: nextcloud
+  finalizer:
+    name: nextcloud.thedatabase.me/finalizer
+    vars:
+      cleanup: true
 #+kubebuilder:scaffold:watch

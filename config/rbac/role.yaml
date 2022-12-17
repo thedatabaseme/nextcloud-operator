@@ -15,6 +15,7 @@ rules:
       - pods/exec
       - pods/log
       - services
+      - persistentvolumeclaims
     verbs:
       - create
       - delete

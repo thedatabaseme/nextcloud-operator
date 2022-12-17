@@ -1,0 +1,22 @@
+---
+
+- name: Get PVCs of {{ ansible_operator_meta.name }}
+  kubernetes.core.k8s_info:
+    kind: PersistentVolumeClaim
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    label_selectors:
+      - "app = nextcloud-{{ ansible_operator_meta.name }}"
+  register:
+    app_pvcs
+
+- debug:
+    var: app_pvcs
+
+- name: Remove the PVC of {{ ansible_operator_meta.name }}
+  kubernetes.core.k8s:
+    state: absent
+    api_version: v1
+    kind: PersistentVolumeClaim
+    namespace: "{{ ansible_operator_meta.namespace }}"
+    label_selectors:
+      - "app = nextcloud-{{ ansible_operator_meta.name }}"
