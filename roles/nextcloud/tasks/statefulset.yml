@@ -1,10 +1,11 @@
 ---
 
-- name: Template a file
+- name: Write template for statefulset for debug
   ansible.builtin.template:
     src: statefulset.j2
     dest: templated_statefulset.yaml
     mode: '0644'
+  when: debug
 
 - name: Create Nextcloud StatefulSet {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:

@@ -3,6 +3,19 @@
 cleanup: false
 replica_count: 1
 nextcloud_image_version: "25.0.2"
+
 volume:
   volume_size: 1Gi
   storage_class: ""
+
+service:
+  type: ClusterIP
+
+loadbalancer:
+  annotations: ""
+
+ingress:
+  type: ""
+  annotations: ""
+  hostname: ""
+  tls: "yes"

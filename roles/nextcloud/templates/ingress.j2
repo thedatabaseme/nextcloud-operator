@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nextcloud-{{ ansible_operator_meta.name }}-ingress
+  namespace: {{ ansible_operator_meta.namespace }}
+{% if ingress.annotations is defined %}
+  annotations:
+    {{ ingress.annotations }}
+{% endif %}
+spec:
+{% if ingress.tls == 'yes' %}
+  tls:
+  - hosts:
+    - {{ ingress.hostname }}
+    secretName: {{ ingress.hostname }}
+{% endif %}
+  rules:
+  - host: {{ ingress.hostname }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nextcloud-{{ ansible_operator_meta.name }}-svc
+            port:
+              number: 80

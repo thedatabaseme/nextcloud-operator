@@ -1,2 +1,3 @@
 ---
-# vars file for Nextcloud
+
+debug: false

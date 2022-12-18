@@ -10,7 +10,6 @@ metadata:
   name: nextcloud-sample
   namespace: nextcloud-sample
 spec:
-  replica_count: 1
+  replicaCount: 1
   volume:
-    volume_size: 1Gi
-    storage_class: nfs-client
+    volumeSize: 1Gi

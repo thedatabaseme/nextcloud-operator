@@ -1,7 +1,29 @@
 ---
 
+- name: Write template for service for debug
+  ansible.builtin.template:
+    src: service.j2
+    dest: templated_service.yaml
+    mode: '0644'
+  when: debug
+
 - name: Create Nextcloud Service {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:
     state: present
     template:
       path: service.j2
+
+- name: Write template for ingress for debug
+  ansible.builtin.template:
+    src: ingress.j2
+    dest: templated_ingress.yaml
+    mode: '0644'
+  when: debug
+
+- name: Create Nextcloud Ingress {{ ansible_operator_meta.name }}
+  kubernetes.core.k8s:
+    state: present
+    template: ingress.j2
+  when: ingress.type is defined and
+        ingress.type == 'Ingress' and
+        ingress.hostname is defined

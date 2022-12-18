@@ -1,0 +1,31 @@
+apiVersion: thedatabase.me/v1alpha1
+kind: Nextcloud
+metadata:
+  labels:
+    app.kubernetes.io/name: nextcloud
+    app.kubernetes.io/instance: nextcloud-sample
+    app.kubernetes.io/part-of: nextcloud-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: nextcloud-operator
+  name: nextcloud-sample
+  namespace: nextcloud-sample
+spec:
+  replicaCount: 1 # Optional, will default to 1
+  nextcloudImageVersion: 25.0.2 # Optional
+  volume:
+    volumeSize: 1Gi
+    storageClass: nfs-client # Optional, will use the default StorageClass when not specified
+  service:
+    type: ClusterIP # Could be ClusterIP, NodePort or LoadBalancer
+  ingress:
+    type: Ingress # Optional if you want to use an Ingress resource
+    hostname: mynextcloud.example.com # mandatory
+    tls: yes # Optional, can be yes or no
+#    annotations: |
+#      kubernetes.io/ingress.class: "nginx"
+#      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+#      cert-manager.io/cluster-issuer: "letsencrypt-production"
+
+#  loadBalancer: # Will only be applied when service.type is LoadBalancer
+#    annotations: |
+#      metallb.universe.tf/address-pool: default
