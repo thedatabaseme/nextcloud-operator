@@ -4,6 +4,8 @@
   group: thedatabase.me
   kind: Nextcloud
   role: nextcloud
+  vars:
+    debug: true
   finalizer:
     name: nextcloud.thedatabase.me/finalizer
     vars:

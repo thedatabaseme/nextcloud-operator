@@ -10,8 +10,11 @@ spec:
     - name: http-80
       protocol: TCP
       port: 80
+{% if service.type is defined and service.type == 'NodePort' and service.node_port is defined %}      
+      nodePort: {{ service.node_port }}
+{% endif %}
 {% if service.type is defined and service.type in ('ClusterIP','NodePort','LoadBalancer') %}
   type: {{ service.type }}
-{% elif service.type is defined and service.type == 'Ingress' %}
-  type: {{ Cl }}
+{% else %}
+  type: ClusterIP
 {% endif %}
