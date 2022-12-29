@@ -8,12 +8,12 @@
       - "app = nextcloud-{{ ansible_operator_meta.name }}"
   register:
     app_pvcs
-  when: debug
+  when: log_level == 'debug'
 
 - name: List PVCs of {{ ansible_operator_meta.name }}
   ansible.builtin.debug:
     var: app_pvcs
-  when: debug
+  when: log_level == 'debug'
 
 - name: Remove the PVC of {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:

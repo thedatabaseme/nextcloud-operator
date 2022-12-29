@@ -5,7 +5,7 @@
     src: service.j2
     dest: templated_service.yaml
     mode: '0644'
-  when: debug
+  when: log_level == 'debug'
 
 - name: Create Nextcloud Service {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:
@@ -18,7 +18,7 @@
     src: ingress.j2
     dest: templated_ingress.yaml
     mode: '0644'
-  when: debug
+  when: log_level == 'debug'
 
 - name: Create Nextcloud Ingress {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:

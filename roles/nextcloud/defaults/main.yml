@@ -1,5 +1,6 @@
 ---
 
+log_level: info
 cleanup: false
 replica_count: 1
 nextcloud_image_version: "25.0.2"

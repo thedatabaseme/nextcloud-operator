@@ -5,10 +5,10 @@ metadata:
   namespace: {{ ansible_operator_meta.namespace }}
 {% if ingress.annotations is defined %}
   annotations:
-    {{ ingress.annotations }}
+    {{ ingress.annotations | indent(width=4) }}
 {% endif %}
 spec:
-{% if ingress.tls == 'yes' %}
+{% if ingress.tls is defined and ingress.tls %}
   tls:
   - hosts:
     - {{ ingress.hostname }}

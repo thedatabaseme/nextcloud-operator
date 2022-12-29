@@ -5,7 +5,7 @@
     src: statefulset.j2
     dest: templated_statefulset.yaml
     mode: '0644'
-  when: debug
+  when: log_level == 'debug'
 
 - name: Create Nextcloud StatefulSet {{ ansible_operator_meta.name }}
   kubernetes.core.k8s:
