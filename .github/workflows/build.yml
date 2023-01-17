@@ -20,7 +20,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ghcr.io/thedatabaseme/awx-ee
-          flavor: latest=false
+          flavor: latest=true
           tags: |
             type=ref,event=branch
             type=ref,event=pr
