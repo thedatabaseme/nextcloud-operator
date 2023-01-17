@@ -42,3 +42,8 @@ jobs:
         if: github.ref_type == 'tag'
         run: |
           make docker-push VERSION=${{github.ref_name}}
+
+      - name: Build and push latest image
+        if: github.ref_type == 'tag'
+        run: |
+          make docker-build docker-push IMG=ghcr.io/thedatabaseme/nextcloud-operator:latest
