@@ -19,7 +19,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/thedatabaseme/awx-ee
+          images: ghcr.io/thedatabaseme/nextcloud-operator
           flavor: latest=true
           tags: |
             type=ref,event=branch
